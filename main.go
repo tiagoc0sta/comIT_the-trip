@@ -1,20 +1,22 @@
-package main // Package declaration, main is the entry point for the executable program
+package main
 
 import (
-	"fmt" // Importing the fmt package for formatted I/O
+	"fmt"
 )
 
+// Define a struct to represent a travel route
 type TravelRoute struct {
-
+	Origin      string
+	Destination string
+	Distance    float64
+	TravelTime  string
 }
-
 
 // Function to calculate the distance and travel time between two cities
 func calculateTravelInfo(origin, destination string) (float64, string) {
-
 	// Placeholder values for demonstration purposes
-	distance := 0.0 // Initializing the distance variable
-	travelTime := "" // Initializing the travelTime variable
+	var distance float64
+	var travelTime string
 
 	// Placeholder calculations based on origin and destination
 	if origin == "Rome" && destination == "Barcelona" {
@@ -27,19 +29,28 @@ func calculateTravelInfo(origin, destination string) (float64, string) {
 		distance = 800.0 // Assigning a placeholder distance value
 		travelTime = "8 hours" // Assigning a placeholder travel time
 	}
+
 	// Returning the calculated distance and travel time
 	return distance, travelTime
 }
+
 func main() {
-origin := "Rome" // Setting the origin city
-destination := "Barcelona" // Setting the destination city
+	// Define a slice of TravelRoute structs to store multiple routes
+	routes := []TravelRoute{
+		{Origin: "Rome", Destination: "Barcelona"},
+		{Origin: "Marrakech", Destination: "Lisbon"},
+		{Origin: "Florence", Destination: "Casablanca"},
+	}
 
-// Calling the calculateTravelInfo function to get the distance and travel time
-distance, travelTime := calculateTravelInfo(origin, destination)
+	// Loop through each route and calculate travel info
+	for _, route := range routes {
+		// Calling the calculateTravelInfo function to get the distance and travel time
+		distance, travelTime := calculateTravelInfo(route.Origin, route.Destination)
 
-// Printing the origin, destination, distance, and travel time
-fmt.Printf("From %s to %s:\n", origin, destination) // Printing the origin and destination cities
-fmt.Printf("Distance: %.2f kilometers\n", distance) // Printing the distance with 2decimal places
-fmt.Printf("Estimated travel time: %s\n", travelTime) // Printing the estimated travel time
-
+		// Printing the origin, destination, distance, and travel time for each route
+		fmt.Printf("From %s to %s:\n", route.Origin, route.Destination) // Printing the origin and destination cities
+		fmt.Printf("Distance: %.2f kilometers\n", distance) // Printing the distance with 2 decimal places
+		fmt.Printf("Estimated travel time: %s\n", travelTime) // Printing the estimated travel time
+		fmt.Println() 
+	}
 }
